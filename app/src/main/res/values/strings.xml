@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">retrench</string>
-    <string name="main_activity_tab_retrench">记账</string>
+    <string name="home_page">首页</string>
+    <string name="retrench">记账</string>
+    <string name="found">发现</string>
+    <string name="me">我的</string>
 </resources>

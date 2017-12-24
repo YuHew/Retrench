@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 import heyu.com.publiclibrary.R;
 import heyu.com.publiclibrary.utils.GlobleUtils;
+import heyu.com.publiclibrary.utils.ThreadManager;
 
 /**
  * @author heyu

@@ -15,11 +15,11 @@ import java.util.List;
  *         描 述：
  *         时 间：16/06/21
  */
-public class CommonListAdapter<T> extends BaseAdapter {
+public class BaseListAdapter<T> extends BaseAdapter {
 
     protected List<T> dataSource;
 
-    public CommonListAdapter(Context context) {
+    public BaseListAdapter(Context context) {
         dataSource = new ArrayList<T>();
     }
 
