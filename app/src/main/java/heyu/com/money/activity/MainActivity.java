@@ -61,20 +61,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
         mFragmentManager = getSupportFragmentManager();
 
-        mRlHomePage = (RelativeLayout) findViewById(R.id.rl_home_page);
-        mRlRetrench = (RelativeLayout) findViewById(R.id.rl_retrench);
-        mRlFound = (RelativeLayout) findViewById(R.id.rl_found);
-        mRlMe = (RelativeLayout) findViewById(R.id.rl_me);
+        mRlHomePage = findViewById(R.id.rl_home_page);
+        mRlRetrench = findViewById(R.id.rl_retrench);
+        mRlFound = findViewById(R.id.rl_found);
+        mRlMe = findViewById(R.id.rl_me);
 
-        mIvHomePage = (ImageView) findViewById(R.id.iv_home_page);
-        mIvRetrench = (ImageView) findViewById(R.id.iv_retrench);
-        mIvFound = (ImageView) findViewById(R.id.iv_found);
-        mIvMe = (ImageView) findViewById(R.id.iv_me);
+        mIvHomePage = findViewById(R.id.iv_home_page);
+        mIvRetrench = findViewById(R.id.iv_retrench);
+        mIvFound = findViewById(R.id.iv_found);
+        mIvMe = findViewById(R.id.iv_me);
 
-        mTvHomePage = (TextView) findViewById(R.id.tv_home_page);
-        mTvRetrench = (TextView) findViewById(R.id.tv_retrench);
-        mTvFound = (TextView) findViewById(R.id.tv_found);
-        mTvMe = (TextView) findViewById(R.id.tv_me);
+        mTvHomePage = findViewById(R.id.tv_home_page);
+        mTvRetrench = findViewById(R.id.tv_retrench);
+        mTvFound = findViewById(R.id.tv_found);
+        mTvMe = findViewById(R.id.tv_me);
 
         mRlHomePage.setOnClickListener(this);
         mRlRetrench.setOnClickListener(this);
@@ -118,18 +118,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rl_home_page://服务
+            case R.id.rl_home_page:
                 setTabSelection(TAB_RETRENCH_HOME_PAGE);
                 break;
-            case R.id.rl_retrench:// 设备
+            case R.id.rl_retrench:
 
                 setTabSelection(TAB_RETRENCH_PAGE);
                 break;
-            case R.id.rl_found:// 社区
+            case R.id.rl_found:
 
                 setTabSelection(TAB_RETRENCH_FOUND_PAGE);
                 break;
-            case R.id.rl_me:// 我的
+            case R.id.rl_me:
                 setTabSelection(TAB_RETRENCH_ME_PAGE);
                 break;
         }

@@ -18,7 +18,7 @@ import heyu.com.publiclibrary.utils.security.SecurityTool;
  * Created by heyu on 2016/8/17.
  */
 public class SharedpreferencesUtil {
-    private final static String SP_NAME = "octopus";
+    private final static String SP_NAME = "Retrench";
     private static SharedPreferences sp;
 
     public static void saveBoolean(Context context, String key, boolean value) {
