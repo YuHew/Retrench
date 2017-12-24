@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="ProgressBarOctopus">
+        <item name="android:indeterminateDrawable">@drawable/loading_progress</item>
+        <item name="android:minWidth">48dip</item>
+        <item name="android:maxWidth">48dip</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">2000</item>
+    </style>
+
+</resources>

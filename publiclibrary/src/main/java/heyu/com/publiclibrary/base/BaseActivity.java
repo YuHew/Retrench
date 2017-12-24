@@ -1,4 +1,4 @@
-package heyu.com.money.base;
+package heyu.com.publiclibrary.base;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,8 @@ import android.util.Log;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
-import heyu.com.money.R;
+import heyu.com.publiclibrary.R;
+
 
 /**
  * Created by Administrator on 2017/12/24 0024.

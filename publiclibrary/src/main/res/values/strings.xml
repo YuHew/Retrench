@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">publicLibrary</string>
+    <string name="isloading_error">加载失败，请重试...</string>
 </resources>

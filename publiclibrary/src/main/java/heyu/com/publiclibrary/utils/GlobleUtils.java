@@ -263,7 +263,6 @@ public class GlobleUtils {
     private static void showNotifyInMainThread(String resId) {
 
         if (sToastNotify == null) {
-
             sToastNotify = new Toast(getContext());
         }
         sToastNotify.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, 0);
