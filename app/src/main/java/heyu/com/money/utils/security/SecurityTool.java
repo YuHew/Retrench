@@ -1,4 +1,4 @@
-package heyu.com.money.utils;
+package heyu.com.money.utils.security;
 
 import android.os.Build;
 import android.util.Base64;
@@ -19,7 +19,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SecurityTool {
 
-    private static String TAG= "SecTool";
+    private static String TAG = "SecTool";
     int mLocalVersion = 0;
     private static byte[] RAMDOM_STRING = DigestUtils.getRandomString(64).getBytes();
     private static byte[] BUFFER_DATA = DigestUtils.getRandomString(16).getBytes();
@@ -79,7 +79,7 @@ public class SecurityTool {
      * @param len
      * @return
      */
-    public static byte[] encryptData(byte[] data, int len){
+    public static byte[] encryptData(byte[] data, int len) {
         String str = null;
         try {
             SecretKeySpec keySpec = new SecretKeySpec(getKeyString(), "AES");
@@ -100,9 +100,9 @@ public class SecurityTool {
      * @param putExtraData
      * @return 加密后的字节数组
      */
-    public static byte[] encryptIntentPutExtraData(String putExtraData){
+    public static byte[] encryptIntentPutExtraData(String putExtraData) {
 
-        return  SecurityTool.encryptData(putExtraData.getBytes(), putExtraData.length());
+        return SecurityTool.encryptData(putExtraData.getBytes(), putExtraData.length());
     }
 
     /***
@@ -110,17 +110,14 @@ public class SecurityTool {
      * @param getExtraData
      * @return
      */
-    public static String decryptionIntentGetExtraData(byte[] getExtraData){
+    public static String decryptionIntentGetExtraData(byte[] getExtraData) {
 
         return SecurityTool.decryptionReceivedData(getExtraData, getExtraData.length);
     }
 
-    public static boolean encryptionDataOrigin(boolean b){
+    public static boolean encryptionDataOrigin(boolean b) {
         return b;
     }
-
-
-
 
 
     public static String toHex(String txt) {
@@ -156,13 +153,13 @@ public class SecurityTool {
     }
 
 
-    public synchronized  static byte[] octopusStr2Byte(String keyString){
+    public synchronized static byte[] octopusStr2Byte(String keyString) {
         //return keyString.getBytes(Charset.forName("utf-8"));
-        return Base64.encode(keyString.getBytes(Charset.forName("utf-8")),0);
+        return Base64.encode(keyString.getBytes(Charset.forName("utf-8")), 0);
         //return keyString == null?null: Base64.encodeToString(keyString.getBytes(Charset.forName("utf-8")), 0);
     }
 
-    public synchronized static String octopusByte2Str(byte[] key){
+    public synchronized static String octopusByte2Str(byte[] key) {
         return new String(key, Charset.forName("utf-8"));
         //return key == null?null:Base64.encodeToString(key, 0);
     }
@@ -195,8 +192,8 @@ public class SecurityTool {
                 } else {
                     return ret;
                 }
-            }else{
-                String ret = Base64.encodeToString(getCrypto().encrypt(boy.getBytes(Charset.forName("utf-8")),getEntity()),0);
+            } else {
+                String ret = Base64.encodeToString(getCrypto().encrypt(boy.getBytes(Charset.forName("utf-8")), getEntity()), 0);
                 if (ret == null) {
                     return "";
                 } else {
@@ -220,15 +217,15 @@ public class SecurityTool {
                 } else {
                     return ret;
                 }
-            }else{
-                String ret = new String(getCrypto().decrypt(Base64.decode(girl,0),getEntity()), Charset.forName("utf-8"));
+            } else {
+                String ret = new String(getCrypto().decrypt(Base64.decode(girl, 0), getEntity()), Charset.forName("utf-8"));
                 if (ret == null) {
                     return "";
                 } else {
                     return ret;
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "";

@@ -1,4 +1,4 @@
-package heyu.com.money.utils;
+package heyu.com.money.utils.security;
 
 import java.security.MessageDigest;
 import java.util.Random;

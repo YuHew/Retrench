@@ -11,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
+import heyu.com.money.utils.security.SecurityTool;
+
 /**
  * Created by heyu on 2016/8/17.
  */
@@ -27,13 +29,12 @@ public class SharedpreferencesUtil {
     public static void saveString(Context context, String key, String value) {
         if (sp == null)
             sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
-        if(value!=null && !value.equals("")) {
+        if (value != null && !value.equals("")) {
             String object_en = SecurityTool.cryptoStr(value);
             sp.edit().putString(key, object_en).commit();
-        }else{
-        sp.edit().putString(key, value).commit();
+        } else {
+            sp.edit().putString(key, value).commit();
         }
-
     }
 
     public static void clear(Context context) {
@@ -70,9 +71,9 @@ public class SharedpreferencesUtil {
         if (sp == null)
             sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
         String s = sp.getString(key, defValue);
-        if(s!=null && !s.equals("")) {
+        if (s != null && !s.equals("")) {
             return SecurityTool.deCryptoStr(s);
-        }else{
+        } else {
             return s;
         }
     }
@@ -104,26 +105,26 @@ public class SharedpreferencesUtil {
 
     public static void saveObject(Context context, String key, Object obj) {
         try {
-            if (sp == null){
-                if(context != null){
+            if (sp == null) {
+                if (context != null) {
                     sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
-                }else {
-                    if(context != null){
+                } else {
+                    if (context != null) {
                         sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
                     }
                 }
             }
 
-            if(sp != null){
+            if (sp != null) {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 ObjectOutputStream os = new ObjectOutputStream(bos);
                 os.writeObject(obj);
                 String bytesToHexString = bytesToHexString(bos.toByteArray());
-                if(bytesToHexString!=null && !bytesToHexString.equals("")) {
+                if (bytesToHexString != null && !bytesToHexString.equals("")) {
                     String object_en = SecurityTool.cryptoStr(bytesToHexString);
                     sp.edit().putString(key, object_en).commit();
-                }else{
-                sp.edit().putString(key, bytesToHexString).commit();
+                } else {
+                    sp.edit().putString(key, bytesToHexString).commit();
                 }
                 bos.close();
                 os.close();
@@ -153,20 +154,20 @@ public class SharedpreferencesUtil {
 
     public static Object readObject(Context context, String key) {
         try {
-            if (sp == null){
-                if(context != null){
+            if (sp == null) {
+                if (context != null) {
                     sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
-                }else {
-                    if(context != null){
+                } else {
+                    if (context != null) {
                         sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE | Context.MODE_MULTI_PROCESS);
                     }
                 }
             }
 
-            if(sp != null){
+            if (sp != null) {
                 if (sp.contains(key)) {
                     String string = sp.getString(key, "");
-                    if(!TextUtils.isEmpty(string)) {
+                    if (!TextUtils.isEmpty(string)) {
                         byte[] stringToBytes = StringToBytes(SecurityTool.deCryptoStr(string));
                         ByteArrayInputStream bis = new ByteArrayInputStream(stringToBytes);
                         ObjectInputStream is = new ObjectInputStream(bis);
@@ -174,7 +175,7 @@ public class SharedpreferencesUtil {
                         bis.close();
                         is.close();
                         return readObject;
-                    }else{
+                    } else {
                         return null;
                     }
                 }
