@@ -1,4 +1,4 @@
-package heyu.com.money.utils;
+package heyu.com.publiclibrary.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,7 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
-import heyu.com.money.utils.security.SecurityTool;
+import heyu.com.publiclibrary.utils.security.SecurityTool;
+
 
 /**
  * Created by heyu on 2016/8/17.

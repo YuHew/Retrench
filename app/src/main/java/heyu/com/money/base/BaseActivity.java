@@ -26,12 +26,12 @@ public abstract class BaseActivity extends FragmentActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         mActivity = this;
         initView(savedInstanceState);
-        initData();
+        loadData();
     }
 
     public abstract void initView(Bundle savedInstanceState);
 
-    public void initData() {
+    public void loadData() {
 
     }
 
@@ -92,6 +92,5 @@ public abstract class BaseActivity extends FragmentActivity {
         Log.d("UIUtility", "isUIRunning:"+isRunning + this);
         return isRunning;
     }
-
 
 }

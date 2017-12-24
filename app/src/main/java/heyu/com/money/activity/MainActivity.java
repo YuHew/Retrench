@@ -1,19 +1,18 @@
 package heyu.com.money.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import heyu.com.money.R;
-import heyu.com.money.utils.SharedpreferencesUtil;
+import heyu.com.money.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void initView(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    public void loadData() {
 
     }
 }

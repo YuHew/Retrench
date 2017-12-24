@@ -7,7 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import heyu.com.money.R;
-import heyu.com.money.utils.GlobleUtils;
+import heyu.com.publiclibrary.utils.GlobleUtils;
 
 public class SplashActivity extends AppCompatActivity {
 

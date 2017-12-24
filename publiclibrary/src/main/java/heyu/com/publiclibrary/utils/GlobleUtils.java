@@ -1,4 +1,4 @@
-package heyu.com.money.utils;
+package heyu.com.publiclibrary.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import heyu.com.money.R;
+import heyu.com.publiclibrary.R;
+
 
 /**
  * Created by Administrator on 2017/12/24 0024.

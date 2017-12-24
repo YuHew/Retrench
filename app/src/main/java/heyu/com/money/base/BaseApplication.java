@@ -12,8 +12,9 @@ import com.facebook.crypto.CryptoConfig;
 import com.facebook.crypto.Entity;
 import com.facebook.crypto.keychain.KeyChain;
 
-import heyu.com.money.utils.GlobleUtils;
-import heyu.com.money.utils.security.SecurityTool;
+import heyu.com.publiclibrary.utils.GlobleUtils;
+import heyu.com.publiclibrary.utils.security.SecurityTool;
+
 
 /**
  * Created by Administrator on 2017/12/24 0024.
