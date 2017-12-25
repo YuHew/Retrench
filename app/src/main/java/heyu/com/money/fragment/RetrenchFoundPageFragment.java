@@ -2,6 +2,8 @@ package heyu.com.money.fragment;
 
 import android.view.View;
 
+import com.stonesun.newssdk.NewsAgent;
+
 import heyu.com.money.R;
 import heyu.com.publiclibrary.base.BaseFragment;
 import heyu.com.publiclibrary.utils.GlobleUtils;
@@ -22,6 +24,5 @@ public class RetrenchFoundPageFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
     }
 }

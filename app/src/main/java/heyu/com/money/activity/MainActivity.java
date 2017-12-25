@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,15 +13,17 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.stonesun.newssdk.NewsAgent;
+import com.stonesun.newssdk.fragment.NewsAFragment;
+
 import heyu.com.money.R;
 import heyu.com.money.fragment.RetrenchHomePageFragment;
 import heyu.com.money.fragment.RetrenchMePageFragment;
 import heyu.com.money.fragment.RetrenchPageFragment;
-import heyu.com.money.fragment.RetrenchFoundPageFragment;
 import heyu.com.publiclibrary.base.BaseActivity;
 import heyu.com.publiclibrary.utils.GlobleUtils;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView mIvHomePage, mIvRetrench, mIvFound, mIvMe;
     private TextView mTvHomePage, mTvRetrench, mTvFound, mTvMe;
@@ -31,7 +34,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private RetrenchHomePageFragment mRetrenchHomePageFragment;
     private RetrenchPageFragment mRetrenchPageFragment;
-    private RetrenchFoundPageFragment mRetrenchFoundPageFragment;
+    //    private RetrenchFoundPageFragment mRetrenchFoundPageFragment;
+    private NewsAFragment mRetrenchFoundPageFragment;
     private RetrenchMePageFragment mRetrenchMePageFragment;
 
     private static final int TAB_RETRENCH_HOME_PAGE = 0;
@@ -45,47 +49,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final String TAG_RETRENCH_ME_PAGE = "TAG_RETRENCH_ME_PAGE";
     private int mCurrentSelection = -1;
 
-
     @Override
     public void initView(Bundle savedInstanceState) {
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        titleHandle();
         setContentView(R.layout.activity_main);
-
         mFragmentManager = getSupportFragmentManager();
-
-        mRlHomePage = findViewById(R.id.rl_home_page);
-        mRlRetrench = findViewById(R.id.rl_retrench);
-        mRlFound = findViewById(R.id.rl_found);
-        mRlMe = findViewById(R.id.rl_me);
-
-        mIvHomePage = findViewById(R.id.iv_home_page);
-        mIvRetrench = findViewById(R.id.iv_retrench);
-        mIvFound = findViewById(R.id.iv_found);
-        mIvMe = findViewById(R.id.iv_me);
-
-        mTvHomePage = findViewById(R.id.tv_home_page);
-        mTvRetrench = findViewById(R.id.tv_retrench);
-        mTvFound = findViewById(R.id.tv_found);
-        mTvMe = findViewById(R.id.tv_me);
-
-        mRlHomePage.setOnClickListener(this);
-        mRlRetrench.setOnClickListener(this);
-        mRlFound.setOnClickListener(this);
-        mRlMe.setOnClickListener(this);
+        findViews();
         if (savedInstanceState != null) {
             mRetrenchHomePageFragment = (RetrenchHomePageFragment) mFragmentManager.findFragmentByTag(TAG_RETRENCH_HOME_PAGE);
             mRetrenchPageFragment = (RetrenchPageFragment) mFragmentManager.findFragmentByTag(TAG_RETRENCH_PAGE);
-            mRetrenchFoundPageFragment = (RetrenchFoundPageFragment) mFragmentManager.findFragmentByTag(TAG_RETRENCH_FOUND_PAGE);
+            mRetrenchFoundPageFragment = (NewsAFragment) mFragmentManager.findFragmentByTag(TAG_RETRENCH_FOUND_PAGE);
             mRetrenchMePageFragment = (RetrenchMePageFragment) mFragmentManager.findFragmentByTag(TAG_RETRENCH_ME_PAGE);
         }
+        NewsAgent.setDebugMode(true);
+        NewsAgent.init(this);
+        NewsAgent.createContentViewActivity("详情页面");
+        NewsAgent.createDefaultRecomFragment("默认推荐", "", "详情页面");
     }
 
     @Override
@@ -113,6 +92,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 setTabSelection(TAB_RETRENCH_HOME_PAGE);
                 break;
         }
+    }
+
+    private NewsAFragment getNewsFragment() {
+        NewsAFragment fragment = NewsAgent.getDefaultRecomFragment("默认推荐");
+        return fragment;
+    }
+
+    private void titleHandle() {
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
+    private void findViews() {
+        mRlHomePage = findViewById(R.id.rl_home_page);
+        mRlRetrench = findViewById(R.id.rl_retrench);
+        mRlFound = findViewById(R.id.rl_found);
+        mRlMe = findViewById(R.id.rl_me);
+
+        mIvHomePage = findViewById(R.id.iv_home_page);
+        mIvRetrench = findViewById(R.id.iv_retrench);
+        mIvFound = findViewById(R.id.iv_found);
+        mIvMe = findViewById(R.id.iv_me);
+
+        mTvHomePage = findViewById(R.id.tv_home_page);
+        mTvRetrench = findViewById(R.id.tv_retrench);
+        mTvFound = findViewById(R.id.tv_found);
+        mTvMe = findViewById(R.id.tv_me);
+
+        mRlHomePage.setOnClickListener(this);
+        mRlRetrench.setOnClickListener(this);
+        mRlFound.setOnClickListener(this);
+        mRlMe.setOnClickListener(this);
     }
 
     @Override
@@ -174,7 +192,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 mIvFound.setBackgroundResource(R.drawable.found_selected);
                 mTvFound.setTextColor(android.graphics.Color.parseColor(GlobleUtils.getString(R.color.home_page_tab_selected)));
                 if (mRetrenchFoundPageFragment == null) {
-                    mRetrenchFoundPageFragment = new RetrenchFoundPageFragment();
+                    mRetrenchFoundPageFragment = getNewsFragment();
                     mFragmentTransaction.add(R.id.fl_content, mRetrenchFoundPageFragment);
                 } else {
                     mFragmentTransaction.show(mRetrenchFoundPageFragment);
@@ -191,7 +209,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 }
                 break;
         }
-        mFragmentTransaction.commitAllowingStateLoss();
+        mFragmentTransaction.commit();
         mFragmentManager.executePendingTransactions();
     }
 

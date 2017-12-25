@@ -11,6 +11,7 @@ import com.facebook.crypto.Crypto;
 import com.facebook.crypto.CryptoConfig;
 import com.facebook.crypto.Entity;
 import com.facebook.crypto.keychain.KeyChain;
+import com.stonesun.newssdk.NewsAgent;
 
 import heyu.com.publiclibrary.utils.GlobleUtils;
 import heyu.com.publiclibrary.utils.security.SecurityTool;
